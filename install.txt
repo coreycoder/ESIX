@@ -1,0 +1,15 @@
+first run 'npm init' in directory to create the package.json file
+
+then run 'npm install babel-cli babel-preset-env browserify --save-dev' to install the compiler for es6 -> es5. The --save-dev will add it to package.json as a development dependency.
+
+then create a .babelrc file with the contents
+    {"presets": ["env"]}
+
+in the package.json add
+  "scripts": {
+    "build": "babel src -d dist | babel --presets env src -d dist | browserify ./dist/main.js -o bundle.js | watchify ./dist/main.js -o bundle.js"
+  },
+
+put es6 code in src folder, and create a dist folder for compiled code
+
+in cli, 'npm run build'
